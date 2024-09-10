@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+require('./models/fruit.js')
 
 //database connection
 mongoose.connect(process.env.MONGODB_URI)
