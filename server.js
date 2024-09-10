@@ -7,7 +7,8 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 // log connection status to terminal
 mongoose.connection.on("connected", ()=> {
-    console.log(`connected to MongoDB ${mongoose.connection.name}.`)
+    console.log(`connected to MongoDB ${mongoose.name}.`)
+    // console.log(mongoose.connection)
 })
 
 //landing page route
