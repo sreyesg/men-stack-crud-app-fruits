@@ -33,6 +33,8 @@ app.get('/', (req, res) => {
 // index Fruits
 app.get('/fruits', async (req,res) => {
     const allFruits = await Fruit.find() 
+    // console.log(allFruits)
+    res.render('fruits/index.ejs', {fruits: allFruits})
 })
 
 // create new route: it will send a form to user
@@ -53,4 +55,4 @@ app.post ('/fruits', async (req, res) => {
 
 
 
-app.listen(3000)
+app.listen(3001)
