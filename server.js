@@ -1,3 +1,5 @@
+// ==============require pacakges ================== //
+
 require('dotenv').config()
 const express = require('express')
 const app = express()
@@ -28,6 +30,11 @@ app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 
+// index Fruits
+app.get('/fruits', async (req,res) => {
+    const allFruits = await Fruit.find() 
+})
+
 // create new route: it will send a form to user
 app.get('/fruits/new', (req, res) => {
     res.render('fruits/new.ejs')
@@ -35,7 +42,13 @@ app.get('/fruits/new', (req, res) => {
 
 
 app.post ('/fruits', async (req, res) => {
-    console.log(req.body)
+    if(req.body.isReadyToEat === 'on'){
+        req.body.isReadyToEat = true
+    } else {
+        req.body.isReadyToEat = false
+    }
+    await Fruit.create(req.body)
+    res.redirect('/fruits/new')
 })
 
 
