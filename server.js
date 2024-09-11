@@ -20,10 +20,9 @@ app.get('/', (req, res) => {
 })
 
 // create new route: it will send a form to user
-
-
-
-
+app.get('/fruits/new', (req, res) => {
+    res.render('fruits/new.ejs')
+})
 
 
 app.listen(3000)
