@@ -25,7 +25,7 @@ const Fruit = require('./models/fruit.js')
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride("_method"))
 app.use(morgan("dev"))
-
+app.use('/public', express.static('public'))
 
 // ================routers ===================== //
 //landing page route
