@@ -4,6 +4,8 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const morgan = require('morgan')
+const methodOverride = require('method-override')
 
 // ================database ====================//
 
@@ -21,7 +23,8 @@ const Fruit = require('./models/fruit.js')
 // =================middleware ================= //
 
 app.use(express.urlencoded({extended: false}))
-
+app.use(methodOverride("_method"))
+app.use(morgan("dev"))
 
 
 // ================routers ===================== //
@@ -46,7 +49,7 @@ app.get('/fruits/new', (req, res) => {
 // create show route
 app.get('/fruits/:fruitId', async (req, res) => {
     const foundFruit = await Fruit.findById(req.params.fruitId)
-    res.send(`se mamo ${foundFruit}`)
+    res.render('fruits/show.ejs',{fruit: foundFruit})
 })
 
 app.post ('/fruits', async (req, res) => {
