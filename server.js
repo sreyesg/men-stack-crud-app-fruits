@@ -37,11 +37,17 @@ app.get('/fruits', async (req,res) => {
     res.render('fruits/index.ejs', {fruits: allFruits})
 })
 
+
 // create new route: it will send a form to user
 app.get('/fruits/new', (req, res) => {
     res.render('fruits/new.ejs')
 })
 
+// create show route
+app.get('/fruits/:fruitId', async (req, res) => {
+    const foundFruit = await Fruit.findById(req.params.fruitId)
+    res.send(`se mamo ${foundFruit}`)
+})
 
 app.post ('/fruits', async (req, res) => {
     if(req.body.isReadyToEat === 'on'){
