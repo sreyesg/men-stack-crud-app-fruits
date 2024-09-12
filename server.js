@@ -52,6 +52,12 @@ app.get('/fruits/:fruitId', async (req, res) => {
     res.render('fruits/show.ejs',{fruit: foundFruit})
 })
 
+app.delete('/fruits/:fruitId', async(req, res)=>{
+    await Fruit.findByIdAndDelete(req.params.fruitId)
+    res.redirect('/fruits')
+
+})
+
 app.post ('/fruits', async (req, res) => {
     if(req.body.isReadyToEat === 'on'){
         req.body.isReadyToEat = true

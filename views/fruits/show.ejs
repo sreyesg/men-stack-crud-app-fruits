@@ -8,6 +8,11 @@
 <body>
     <h1><%= fruit.name %></h1>
     <p>is the fruit ready to eay? <%= fruit.isReadyToEat %></p>
+    <form action="/fruits/<%= fruit._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%= fruit.name %></button>
+    </form>
+    
+    
     <a href="/fruits">Back to Fruits</a>
 </body>
 </html>
