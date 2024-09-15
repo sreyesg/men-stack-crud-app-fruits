@@ -41,7 +41,8 @@ app.post ('/fruits', fruitsCtrl.create)
 // ================ auth router ====================== //
 
 app.get('/auth/sign-up', authCtrl.signUpForm)
+app.post('/auth/sign-up', authCtrl.createUser)
 
 
 
-app.listen(3001)
+app.listen(3002)
