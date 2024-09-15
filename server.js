@@ -40,16 +40,9 @@ app.get('/fruits/new', (req, res) => {
 })
 
 // create show route
-app.get('/fruits/:fruitId', async (req, res) => {
-    const foundFruit = await Fruit.findById(req.params.fruitId)
-    res.render('fruits/show.ejs',{fruit: foundFruit})
-})
+app.get('/fruits/:fruitId', fruitsCtrl.show)
 
-app.delete('/fruits/:fruitId', async(req, res)=>{
-    await Fruit.findByIdAndDelete(req.params.fruitId)
-    res.redirect('/fruits')
-
-})
+app.delete('/fruits/:fruitId', fruitsCtrl.destroy) 
 
 app.post ('/fruits', async (req, res) => {
     if(req.body.isReadyToEat === 'on'){
