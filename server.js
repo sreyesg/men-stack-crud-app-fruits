@@ -29,31 +29,13 @@ app.use(morgan("dev"))
 app.use('/public', express.static('public'))
 
 // ================routers ===================== //
-//landing page route
+
 app.get('/', fruitsCtrl.home)
-// index Fruits
 app.get('/fruits', fruitsCtrl.index)
-
-// create new route: it will send a form to user
-app.get('/fruits/new', (req, res) => {
-    res.render('fruits/new.ejs')
-})
-
-// create show route
+app.get('/fruits/new', fruitsCtrl.newForm)
 app.get('/fruits/:fruitId', fruitsCtrl.show)
-
 app.delete('/fruits/:fruitId', fruitsCtrl.destroy) 
-
-app.post ('/fruits', async (req, res) => {
-    if(req.body.isReadyToEat === 'on'){
-        req.body.isReadyToEat = true
-    } else {
-        req.body.isReadyToEat = false
-    }
-    await Fruit.create(req.body)
-    res.redirect('/fruits/new')
-})
-
+app.post ('/fruits', fruitsCtrl.create)
 
 
 app.listen(3001)
