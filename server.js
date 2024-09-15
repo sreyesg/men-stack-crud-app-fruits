@@ -30,17 +30,9 @@ app.use('/public', express.static('public'))
 
 // ================routers ===================== //
 //landing page route
-app.get('/', (req, res) => {
-    res.render('index.ejs')
-})
-
+app.get('/', fruitsCtrl.home)
 // index Fruits
-app.get('/fruits', async (req,res) => {
-    const allFruits = await Fruit.find() 
-    // console.log(allFruits)
-    res.render('fruits/index.ejs', {fruits: allFruits})
-})
-
+app.get('/fruits', fruitsCtrl.index)
 
 // create new route: it will send a form to user
 app.get('/fruits/new', (req, res) => {
