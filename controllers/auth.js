@@ -20,10 +20,15 @@ const createUser = async(req, res)=>{
     res.send('form Submission accepted')
 }
 
+const signInForm = (req, res)=>{
+    res.render('auth/sign-in.ejs')
+}
 
 
 
 module.exports = {
     signUpForm,
     createUser,
+    signInForm,
+
 }

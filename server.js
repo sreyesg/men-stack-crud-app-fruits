@@ -42,7 +42,7 @@ app.post ('/fruits', fruitsCtrl.create)
 
 app.get('/auth/sign-up', authCtrl.signUpForm)
 app.post('/auth/sign-up', authCtrl.createUser)
-
+app.get('/auth/sign-in', authCtrl.signInForm)
 
 
 app.listen(3002)
