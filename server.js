@@ -6,6 +6,7 @@ const app = express()
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
+const fruitsCtrl = require('./controllers/fruits.js')
 
 // ================database ====================//
 
