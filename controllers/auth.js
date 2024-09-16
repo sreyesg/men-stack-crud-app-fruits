@@ -24,11 +24,23 @@ const signInForm = (req, res)=>{
     res.render('auth/sign-in.ejs')
 }
 
+const signInUser = async(req, res) => {
+    const userInDatabase = await User.findOne({username: req.body.username})
+    if(!userInDatabase){
+        return res.send('Failed to login, please try it again') 
+    }
+    const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password)
+    if (!validPassword){
+        return res.send('login failed please try it again')
+    }else {return res.send('you are in')}
+
+}
 
 
 module.exports = {
     signUpForm,
     createUser,
     signInForm,
+    signInUser,
 
 }
