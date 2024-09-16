@@ -32,8 +32,8 @@ const signInUser = async(req, res) => {
     const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password)
     if (!validPassword){
         return res.send('login failed please try it again')
-    }else {return res.send('you are in')}
-
+    }
+    req.session.user = userInDatabase.username
 }
 
 

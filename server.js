@@ -8,7 +8,7 @@ const morgan = require('morgan')
 const methodOverride = require('method-override')
 const fruitsCtrl = require('./controllers/fruits.js')
 const authCtrl = require('./controllers/auth.js')
-
+const session = require('express-session')
 // ================database ====================//
 
 //DATABASE CONNECTION
@@ -27,6 +27,11 @@ const Fruit = require('./models/fruit.js')
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride("_method"))
 app.use(morgan("dev"))
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+}))
 app.use('/public', express.static('public'))
 
 // ================Fruts routers ===================== //
